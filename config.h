@@ -75,7 +75,7 @@ const int boxdraw_braille = 1;
 static int bellvolume = 0;
 
 /* default TERM value */
-char *termname = "st-24bit";
+char *termname = "st-256color";
 
 /*
  * spaces per tab
@@ -93,6 +93,10 @@ char *termname = "st-24bit";
  *	stty tabs
  */
 unsigned int tabspaces = 4;
+
+/* bg opacity */
+float alpha = 0.9;          //< alpha value used when the window is focused.
+float alphaUnfocussed = 0.8; //< alpha value used when the focus is lost
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -121,6 +125,7 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
+	"#282C34"
 };
 
 
@@ -129,7 +134,7 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
+unsigned int defaultbg = 258;
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 
