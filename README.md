@@ -1,3 +1,38 @@
+# st - simple terminal
+st is a simple terminal emulator for X which sucks less.
+
+
+# Requirements
+In order to build st you need the Xlib header files.
+
+
+# Installation
+Edit config.mk to match your local setup (st is installed into
+the /usr/local namespace by default).
+
+Afterwards enter the following command to build and install st (if
+necessary as root):
+
+```sh
+make clean install
+```
+
+
+# Running st
+If you did not install st with make clean install, you must compile
+the st terminfo entry with the following command:
+
+```sh
+echo -sx st.info
+```
+
+See the man page for additional details.
+
+# Credits
+Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
+
+# FAQ
+
 ## Why does st not handle utmp entries?
 
 Use the excellent tool of [utmp](https://git.suckless.org/utmp/) for this task.
@@ -41,10 +76,15 @@ sequences.
 But buggy applications (like bash and irssi, for example) don't do this. A fast
 solution for them is to use the following command:
 
-	$ printf '\033[?1h\033=' >/dev/tty
+```sh
+printf '\033[?1h\033=' >/dev/tty
+```
 
 or
-	$ tput smkx
+
+```sh
+tput smkx
+```
 
 In the case of bash, readline is used. Readline has a different note in its
 manpage about this issue:
@@ -189,7 +229,9 @@ XML configuration.  As an ugly workaround (which may work only on newer
 fontconfig versions (FC_COLOR)), the following code can be used to mask color
 fonts:
 
-	FcPatternAddBool(fcpattern, FC_COLOR, FcFalse);
+```c
+FcPatternAddBool(fcpattern, FC_COLOR, FcFalse);
+```
 
 Please don't bother reporting this bug to st, but notify the upstream Xft
 developers about fixing this bug.
